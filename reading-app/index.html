@@ -1,13 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="src/styles/css/bootstrap.min.css" rel="stylesheet">
+  <link href="src/styles/css/main.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+  <title>Main-page</title>
+</head>
+<body class="bg-body">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span><img src="src/img/navbar-toggle.png"></img></span>
+      </button>
+      <a class="navbar-brand" href="#"><h2>Gachitalka</h2></a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03"> 
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"><span>Profile</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"><span>Library</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"><span>Support</span></a>
+            </li>
+          </ul>
+        </div>    
+    </div>
+  </nav>
+  <div class="container-fluid bg-body ">
+    <div class="row">
+      <div class="col">
+        <button class="bg-body  border-0">
+         <img src="src/img/Paste_Text_Menu_Button.png"></img>
+        </button>
+      </div>
+    </div> 
+    <div class="row">
+      <div class="col">
+        <button class="bg-body  border-0">
+          <img src="src/img/Compass.png"></img>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <div class="row mt-3 mb-3 text-center">
+      <div class="col">
+        <h1 class="text-white">overhead</h1>
+      </div>
+    </div>
+    <div class="row mt-3 mb-3 text-center">
+      <div class="col">
+          <p class="h5 text-white">sang as they flew overhead, and a gentle breeze</p>
+      </div>
+    </div>
+    <div class="row mt-5 mb-3">
+      <div class="col-lg-5 text-end"><button class="bg-body border-0"><img src="src/img/LeftVector.png" alt=""></button></div>
+      <div class="col-lg-2 text-center"><button class="bg-body border-0"><img src="src/img/Pause.png" alt=""></button></div>
+      <div class="col-lg-5 text-start"><button class="bg-body border-0"><img src="src/img/RightVector.png" alt=""></button></div>
+    </div>
+    <div class="row text-center">
+      <div class="col-lg-5 col-md-3 col-sm-3"></div>
+      <div class="col-lg-2 col-md-6 col-sm-6">
+        <label for="customRange" class="form-label"></label>  
+      <input type="range" class="form-range" id="customRange">
+      <p class="h6 text-white">Speed Level</p>
+      </div>
+      <div class="col-lg-5 col-md-3 col-sm-3"></div>
+    </div>
+  </div>
+  <script src="src/js/bootstrap.bundle.min.js" ></script>
+ </body>
 </html>
