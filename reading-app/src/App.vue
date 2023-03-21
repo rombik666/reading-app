@@ -3,12 +3,7 @@
 </script>
  
 <template>
-  <Play />
-  <Prev />
-  <Next />
-  <OkBtn>
-    OK
-  </OkBtn>
+  <ReadPage />
 </template>
  
 <style scoped>

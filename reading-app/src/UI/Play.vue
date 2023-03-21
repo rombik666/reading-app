@@ -9,9 +9,7 @@
 </script>
  
 <template>
-  <div class="play" :class="{active: isActive}" @click="changeActive">
-    
-  </div>
+  <div class="play" :class="{active: isActive}" @click="changeActive"></div>
 </template>
  
 <style scoped>
@@ -19,7 +17,7 @@
     width: 50px;
     height: 50px;
     background-image: url('../assets/img/play.svg'), url('../assets/img/pause.svg');
-    background-position: 0 0, -50px 0;
+    background-position: 0 0, 0 50px;
     background-repeat: no-repeat, no-repeat;
     transition: all .3s ease;
   }
