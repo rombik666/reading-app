@@ -1,26 +1,30 @@
 <script setup>
   import { ref, watchEffect } from 'vue'
 
-  let string = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus odit fugit ducimus maiores? Fugiat, quam corrupti consequatur architecto minus eveniet vero modi nobis praesentium porro temporibus culpa ratione. Vero, dolore.';
+  let string = 'sang as they flew overhead, and a gentle breeze';
   const props = defineProps(['state'])
   const data = ref(string.split(' '))
   const vector = ref(data.value[0])
   let timer;
+  let i = 0;
 
   function start(temp) {
     
     if (!temp) {
-      let i = 0;
+      
       timer = setInterval(() => {
         if (i < data.value.length) {
           vector.value = data.value[i];
           i++;
         } else {
+          i = 0;
           return;
         }
       }, 400);
     } else {
-      clearInterval(timer);
+      clearInterval(timer)
+      vector.value = data.value[i]
+
     }
   }
 
@@ -42,13 +46,11 @@
   </div>
   <div class="row mt-3 mb-3 text-center">
     <div class="col">
-      <p class="h5 text-white">sang as they flew overhead, and a gentle breeze</p>
+      <marquee width="300px" behavior="scroll" direction="right" class="h5 text-white">sang as they flew overhead, and a gentle breeze</marquee>
     </div>
   </div>
 </template>
  
 <style scoped>
-  .mainTT {
-    transition: all;
-  }
+
 </style>

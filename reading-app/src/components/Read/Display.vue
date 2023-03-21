@@ -3,13 +3,15 @@
   import Next from '../../UI/Next.vue';
   import Prev from '../../UI/Prev.vue';
 
-  const sys = ref(0);
+  const sys = ref(0)
+
+  const range = ref("")
 
   function changeState() {
-    sys.value = !sys.value;
+    sys.value = !sys.value
   }
 
-  console.log(sys.value);
+  
  
 </script>
  
@@ -26,7 +28,7 @@
       <div class="col-lg-5 col-md-3 col-sm-3"></div>
       <div class="col-lg-2 col-md-6 col-sm-6">
         <label for="customRange" class="form-label"></label>  
-      <input type="range" class="form-range" id="customRange">
+      <input type="range" class="form-range" id="customRange" min="1" max="100" v-model="range">
       <p class="h6 text-white">Speed Level</p>
       </div>
       <div class="col-lg-5 col-md-3 col-sm-3"></div>
