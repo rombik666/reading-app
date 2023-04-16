@@ -9,6 +9,10 @@ import NavBar from './components/Read/NavBar.vue'
 import SideBar from './components/Read/SideBar.vue'
 import Display from './components/Read/Display.vue'
 import Word from './components/Read/Word.vue'
+import Text from './UI/Text.vue'
+import Map from './UI/Map.vue'
+import Scroll from './UI/Scroll.vue'
+import Window from './UI/Window.vue'
 
 
 const app = createApp(App)
@@ -23,6 +27,10 @@ app
   .component('Prev', Prev)
   .component('Next', Next)
   .component('OkBtn', OkBtn)
+  .component('Text', Text)
+  .component('Map', Map)
+  .component('Scroll', Scroll)
+  .component('Window', Window)
 
 
 app.mount('#app')

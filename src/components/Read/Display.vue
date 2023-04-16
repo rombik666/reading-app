@@ -5,34 +5,28 @@
 
   const sys = ref(0)
 
-  const range = ref("")
+  const range = ref(20)
 
   function changeState() {
     sys.value = !sys.value
+    console.log(sys.value)
   }
 
+  function getScroll(feed) {
+    range.value = Number(feed.value);
+  }
   
- 
 </script>
  
 <template>
-  <div class="container mt-5">
-    <Word :state="sys"/>
-    {{ sys }}
+  <div class="container mt-5 mh-100">
+    <Word :state="sys" :speed="range" />
     <div class="btn-list row mt-5 mb-3">
       <Prev />
       <Play @click="changeState" />
       <Next />
     </div>
-    <div class="row text-center">
-      <div class="col-lg-5 col-md-3 col-sm-3"></div>
-      <div class="col-lg-2 col-md-6 col-sm-6">
-        <label for="customRange" class="form-label"></label>  
-      <input type="range" class="form-range" id="customRange" min="1" max="100" v-model="range">
-      <p class="h6 text-white">Speed Level</p>
-      </div>
-      <div class="col-lg-5 col-md-3 col-sm-3"></div>
-    </div>
+    <Scroll @getScroll="getScroll" :state="sys" />
   </div>
 </template>
  

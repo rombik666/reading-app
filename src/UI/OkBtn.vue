@@ -14,6 +14,9 @@
   .ok {
     width: 100px;
     height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #14213D;
     border: 1px solid #FCA311;
     color: #FCA311;
