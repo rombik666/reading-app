@@ -1,24 +1,33 @@
 <script setup>
-  import { ref } from 'vue'
+  import { window } from '../components/Read/statement';
+  import { cur_text } from '../components/Read/statement';
+  import { ref } from 'vue';
 
-  const props = defineProps(['onOff']);
+  const message = ref("");
 
-  const isVisible = ref(props.onOff.value);
-  console.log(isVisible.value);
+  function reset() {
+    window.value = !window.value;
+    message.value = "";
+  }
 
-  const window_text = ref('');
+  function sendText() {
+    cur_text.value = message.value;
+    console.log(message.value)
+    window.value = !window.value;
+  }
+
 </script>
  
 <template>
-  <div class="window" :class="{visible: isVisible}">
+  <div class="window" :class="{visible: window.value}">
     <div class="window__content">
       
-      <div class="cancel" @click="turn">
+      <div class="cancel" @click="reset">
         <img src="../assets/img/cancel.svg" alt="">
       </div>
-      <textarea class="window__input" v-model="window_text"></textarea>
+      <textarea class="window__input" v-model="message"></textarea>
       <div class="window__btn">
-        <OkBtn>OK</OkBtn>
+        <OkBtn @click="sendText">OK</OkBtn>
       </div>
     </div>
   </div>
@@ -26,7 +35,7 @@
  
 <style scoped>
   .visible {
-    display: block;
+    display: block !important;
   }
   .window {
     display: none;

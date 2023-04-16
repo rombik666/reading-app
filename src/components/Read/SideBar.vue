@@ -1,21 +1,15 @@
 <script setup>
-  import { ref } from 'vue'
-
-  const state = ref(0);
-
-  const turn = () => {
-    state.value = !state.value;
-    console.log(state.value)
-  }
+  import { window } from './statement.js'
+  console.log(window);
 
 </script>
  
 <template>
-  <Window :onOff="state" />
+  <Window />
   <div class="wrapp container-fluid bg-body ">
     <div class="row">
       <div class="col">
-        <Text @click="turn"/>
+        <Text @click="window.value = !window.value" />
       </div>
     </div> 
     <div class="row">
