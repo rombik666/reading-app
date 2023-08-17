@@ -28,8 +28,8 @@
  
 <style lang="scss" scoped>
   @import './styles/burger.scss';
-  @import '../shared/styles/typo.scss';
-  @import '../shared/styles/colors.scss';
+  @import '../../shared/styles/colors.scss';
+  @import '../../shared/styles/typo.scss';
 
   .menu {
     width: 100%;
@@ -40,8 +40,8 @@
     padding: 22px 17px;
   }
   .logo {
-    margin-left: 12px;
-    color: #39507A;
+    margin-left: 30px;
+    color: #bde0fe;
     h1 {
       width: 205px;
       position: relative;
@@ -53,6 +53,7 @@
     }
     .active {
       display: block;
+      color: #ffb703;
       position: absolute;
       right: 0;
       top: 0;

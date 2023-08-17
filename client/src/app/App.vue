@@ -1,10 +1,11 @@
 <script setup>
-  import MenuBar from '../widgets/MenuBar.vue';
-
+  import MenuBar from '../widgets/MenuBar/MenuBar.vue';
+  import SideMenu from '../features/SideMenu/SideMenu.vue'
 </script>
 
 <template>
   <MenuBar />
+  <SideMenu />
 </template>
 
 <style>
