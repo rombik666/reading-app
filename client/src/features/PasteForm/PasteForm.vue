@@ -14,12 +14,10 @@
 <style lang="scss" scoped>
   @import '../../shared/styles/colors.scss';
   @import '../../shared/styles/typo.scss';
+  @import '../../shared/styles/form.scss';
 
   .paste-form {
-    position: relative;
-    width: 680px;
-    height: 430px;
-    border-radius: 30px;
+    @extend %form;
   }
   .text-input {
     width: 100%;
@@ -39,23 +37,11 @@
     }
   }
   .downbar {
-    width: 100%;
-    height: 60px;
-    position: absolute;
-    bottom: 0;
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px;
     background-color: $background;
-    border-radius: 0 0 30px 30px;
+    @extend %downbar;
   }
   .submit {
-    width: 40px;
-    height: 40px;
-    background-image: url('./assets/btn.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+    @extend %submit;
   }
 
 </style>

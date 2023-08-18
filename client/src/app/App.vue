@@ -1,11 +1,15 @@
 <script setup>
-  import MenuBar from '../widgets/MenuBar/MenuBar.vue';
+  import MenuBar from '../widgets/MenuBar/MenuBar.vue'
   import SideMenu from '../features/SideMenu/SideMenu.vue'
+  import PasteForm from '../features/PasteForm/PasteForm.vue'
+  import FileForm from '../features/FileForm/FileForm.vue'
 </script>
 
 <template>
   <MenuBar />
   <SideMenu />
+  <FileForm />
+  <PasteForm />
 </template>
 
 <style>
