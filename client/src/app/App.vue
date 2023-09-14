@@ -1,15 +1,13 @@
 <script setup>
   import MenuBar from '../widgets/MenuBar/MenuBar.vue'
-  import SideMenu from '../features/SideMenu/SideMenu.vue'
-  import PasteForm from '../features/PasteForm/PasteForm.vue'
-  import FileForm from '../features/FileForm/FileForm.vue'
+  import ReadWidget from '../widgets/ReadWidget/Readwidget.vue'
 </script>
 
 <template>
   <MenuBar />
-  <SideMenu />
-  <FileForm />
-  <PasteForm />
+  <div class="centered">
+    <ReadWidget />
+  </div>
 </template>
 
 <style>
@@ -104,7 +102,19 @@
   }
 
   body {
+    background-color: #1C2D4F;
     font-family: 'Roboto', sans-serif;
   }
 
+  /* custom fonts below */
+
+  .centered {
+    width: 100%;
+    height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
 </style>

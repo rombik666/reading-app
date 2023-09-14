@@ -1,35 +1,23 @@
 <script setup>
-  import DownBar from '../../entities/DownBar/DownBar.vue';
+  const props = defineProps(['content']);
 </script>
  
 <template>
- <div class="paste-form">
-  <textarea class="text-input" name="text" placeholder="Write or paste the text..."></textarea>
-  <DownBar />
- </div>
+  <div class="lib-text">
+    {{ props.content }}
+  </div>
 </template>
  
 <style lang="scss" scoped>
   @import '../../shared/styles/colors.scss';
   @import '../../shared/styles/typo.scss';
-  @import '../../shared/styles/form.scss';
-
-  .paste-form {
-    display: flex;
-    flex-direction: column;
-    background-color: $background;
-    padding: 20px 20px 0 20px;
-
-    @extend %form;
-  }
-  .text-input {
+  .lib-text {
     width: 100%;
     height: 100%;
-    margin-right: 20px;
+    overflow-y: scroll;
     color: $text;
-    resize: none;
-    outline: none;
-    @extend %title;
+    line-height: 30px;
+    @extend %middle-text;
     &::placeholder {
       color: $placeholder;
     }
@@ -47,5 +35,4 @@
       border: none;  /* отступ вокруг бегунка */
     }
   }
-
 </style>

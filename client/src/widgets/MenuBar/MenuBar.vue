@@ -33,7 +33,7 @@
 
   .menu {
     width: 100%;
-    background-color: $background;
+    background-color: $menu;
     display: flex;
     justify-content: flex-start;
     align-items: center;
