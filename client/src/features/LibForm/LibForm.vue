@@ -9,7 +9,7 @@
   import { pointer, editPointerItself } from '../../shared/store/pointer';
 
 
-  import axios from 'axios';
+  import axios from '../../shared/axios/axios.js';
 
   const books = ref([
     {
