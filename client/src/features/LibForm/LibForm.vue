@@ -30,7 +30,8 @@
   onMounted(() => {
     axios.get('/api/books')
     .then(response => {
-      books.value = response;
+      books.value = response.data;
+      console.log(response);
     })
     .catch(error => {
       console.log(error);

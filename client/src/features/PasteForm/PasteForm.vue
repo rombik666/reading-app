@@ -12,7 +12,8 @@
       content: content.value,
     })
     .then(response => {
-      editPointerItself(response);
+      editPointerItself(response.data);
+      console.log(response);
     })
     .catch(error => {
       console.log(error);
