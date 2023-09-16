@@ -3,6 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
+const Cors = require('cors')
 
 const authRouter = require('./routes/auth');
 const booksRouter = require('./routes/books');
@@ -21,6 +22,7 @@ mongoose.connect(uri, {
 
 let app = express();
 
+app.use(Cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
