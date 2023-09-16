@@ -1,5 +1,6 @@
 <script setup>
-  import axios from 'axios';
+  import axios from '../../shared/axios/axios.js';
+
   
   const queryToLogout = () => {
     axios.post('/api/logout');

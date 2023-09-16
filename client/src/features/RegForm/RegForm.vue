@@ -2,7 +2,8 @@
 <script setup>
   import { ref } from 'vue';
 
-  import axios from 'axios';
+  import axios from '../../shared/axios/axios.js';
+
 
   const email = ref('');
   const password = ref('');
