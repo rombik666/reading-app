@@ -2,14 +2,23 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const mongoose = require('mongoose');
 
-let {usersRouter} = require('./routes/users');
-let booksRouter = require('./routes/books');
-let {settingsRouter} = require('./routes/settings');
-let registrationRouter = require('./routes/registration');
-let loginRouter = require('./routes/login');
+const authRouter = require('./routes/auth');
+const booksRouter = require('./routes/books');
+const settingsRouter = require('./routes/settings');
+const userRouter = require('./routes/users');
 
-const port = process.env.port || 3000;
+const uri = "mongodb+srv://root:root@gachicluster.och71zo.mongodb.net/?retryWrites=true&w=majority"
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }).then(() => {
+    console.log('Подключение к MongoDB успешно!');
+  }).catch((err) => {
+    console.error('Ошибка подключения к MongoDB:', err);
+  });
+
 let app = express();
 
 app.use(logger('dev'));
@@ -18,12 +27,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/books', booksRouter);
-app.use('/api/settings', settingsRouter);
-app.use('/api/registration', registrationRouter);
-app.use('/api/login', loginRouter);
-app.use('/api/users', usersRouter);
+app.use('/api', authRouter);
+app.use('/api', booksRouter);
+app.use('/api', settingsRouter);
+app.use('/api', userRouter);
 
-app.listen(port, () => {
-    console.log(`Server started on port: ${port}`)
+app.listen(3000, () => {
+    console.log(`Сервер запущени на 3000 порте.`);
 })

@@ -1,21 +1,14 @@
-var express = require('express');
-const { v4: uuidv4 } = require('uuid');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const userModel = require('../models/user.js')
 
-let users = []
-users[0] = {
-  userid: 1,
-  email: "example@gmail.com",
-  password: "1234Example",
-  premium: 0
-}
-
-router.get('/', (req, res, next) => {
-    res.send(users);
+router.get('/users', async (req, res, next) => {
+    const users = await userModel.find();
+    res.json(users);
 });
 
 
 
 
 
-module.exports = {usersRouter: router, users};
+module.exports = router;

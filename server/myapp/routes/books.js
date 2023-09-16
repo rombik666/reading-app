@@ -1,63 +1,43 @@
-var express = require('express');
-const { v4: uuidv4 } = require('uuid');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const bookModule = require("../models/book");
+const { findById } = require('../models/user');
 
-let books = [];
-books[0] = {
-    bookid: 1,
-    title: "Сказ о сыне шлюхи",
-    content: "Жил был сын шлюхи, его мать ебалась за деньги, так и умерла в общем.",
-    wordnumb: 0,
-    userid: 1
-}
-books[1] = {
-    bookid: 2,
-    title: "Сказ шлюхоматери",
-    content: "Жила была шлюхомать, сын этой матери был сыном шлюхи, так и умерла в общем.",
-    wordnumb: 0,
-    userid: 1
-}
-
-router.get('/', (req, res, next) => {
+router.get('/books', async (req, res, next) => {
+    const id = req.cookies.id;
+    const books = await bookModule.find({userid: id});
     res.json(books)
 });
 
-router.post('/', (req, res, next) => {
-    newBook = {
-        bookid: uuidv4(),
-        title: req.body.title || '',
-        content: req.body.content,
-        wordnumb: 0
+router.post('/books', async (req, res, next) => {
+    const id = req.cookies.id;
+    const user = await bookModule.findOne({userid: id});
+    console.log(user);
+    if (!user){
+        res.send("Ошибка пользователя");
     }
-    books.push(newBook);
-    res.send(books);
+    const book = await bookModule.create({
+        title: req.body.title || "",
+        content: req.body.content || "",
+        userid: id
+    });
+    res.json(book);
 });
 
-router.put('/', (req, res, next) => {
-    const index = books.findIndex((book) => book.bookid === req.body.bookid);
-    if (index !== -1){
-        updatedBook = {
-            bookid: req.body.bookid,
-            title: req.body.title || books[index].title,
-            content: req.body.content || books[index].content,
-            wordnumb: req.body.wordnumb || books[index].wordnumb
-        }
-        books[index] = updatedBook;
-        res.json(updatedBook);
-    } else {
-        res.status(404).send('Объект с таким id не найден')
-    }
-
+router.put('/books', async (req, res, next) => {
+    const {_id, title, content, wordnumb} = req.body;
+    await bookModule.findOneAndUpdate({_id: _id}, 
+        {
+            title: title,
+            content: content,
+            wordnumb: wordnumb
+        })
+    res.send("Книга обновлена");
 })
 
-router.delete('/', (req, res, next) => {
-    const index = books.findIndex((book) => book.bookid === req.body.bookid);
-    if (index !== -1){
-        books.splice(index, 1);
-        res.json(books);
-    } else {
-        res.status(404).send('Объект с таким id не найден')
-    }
+router.delete('/books', async (req, res, next) => {
+    await bookModule.findByIdAndDelete(req.body._id);
+    res.send("Книга удалена");
 })
 
 module.exports = router;
