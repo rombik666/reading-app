@@ -1,10 +1,16 @@
 <script setup>
   import SendBtn from '../../shared/ui/SendBtn/SendBtn.vue'
+
+  const emit = defineEmits(['action']);
+
+  const makeEventHappen = () => {
+    emit('action');
+  }
 </script>
  
 <template>
  <div class="downbar">
-    <SendBtn />
+    <SendBtn  @click="makeEventHappen" />
   </div>
 </template>
  

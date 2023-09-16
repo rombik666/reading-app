@@ -1,11 +1,31 @@
 <script setup>
+  import { ref } from 'vue';
+  import axios from 'axios';
+
   import DownBar from '../../entities/DownBar/DownBar.vue';
+  import { editPointerItself } from '../../shared/store/pointer.js';
+
+  const content = ref("");
+
+  const postBook = () => {
+    axios.post('/api/books', {
+      content: content.value,
+    })
+    .then(response => {
+      editPointerItself(response);
+    })
+    .catch(error => {
+      console.log(error);
+      console.log('this is a mistake motherfucker!');
+    })
+  }
+
 </script>
  
 <template>
  <div class="paste-form">
-  <textarea class="text-input" name="text" placeholder="Write or paste the text..."></textarea>
-  <DownBar />
+  <textarea v-model="content" class="text-input" name="text" placeholder="Write or paste the text..."></textarea>
+  <DownBar @action="postBook"/>
  </div>
 </template>
  

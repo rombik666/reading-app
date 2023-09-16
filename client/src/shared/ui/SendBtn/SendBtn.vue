@@ -1,9 +1,14 @@
 <script setup>
- 
+  import { RouterLink } from 'vue-router';
 </script>
  
 <template>
-  <button class="submit"></button>
+  <RouterLink to="/play">
+    <button class="submit">
+    
+    </button>
+  </RouterLink>
+  
 </template>
  
 <style scoped>

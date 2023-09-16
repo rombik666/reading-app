@@ -6,7 +6,7 @@
 
   import { ref, watch } from 'vue';
 
-  import { book, book_array, book_ptr } from '../../shared/store/book.js';
+  import { pointer_exists, pointer_array, pointer_ptr } from '../../shared/store/pointer.js';
   import { speed } from '../../shared/store/speed.js';
   import { startFraming, stopFraming } from '../../shared/algorithms/play';
 
@@ -32,14 +32,14 @@
 </script>
  
 <template>
-  <div class="play-form">
+  <div v-if="pointer_exists" class="play-form">
     <div :class="{active: !is_playing}" class="play-text">
-      <WordBtn v-for="(word, i) in book_array" :key="i" :index="i">
+      <WordBtn v-for="(word, i) in pointer_array" :key="i" :index="i">
         {{ word }}&#32;
       </WordBtn>
     </div>
     <div :class="{active: is_playing}" class="play-display">
-      <span>{{ book_ptr }}</span>
+      <span>{{ pointer_ptr }}</span>
     </div>
     <div class="play-operations">
       <PlayBtn v-if="!is_playing" @click="managePlayer" />
@@ -48,6 +48,12 @@
         <span>{{ speed }}</span>
         <Scroll />
       </div>
+    </div>
+  </div>
+  <div v-else class="play-empty">
+    <div>
+      <h1>Плеер пуст</h1>
+      <p>Загрузите текст или выберите из библиотеки</p>
     </div>
   </div>
 </template>
@@ -99,6 +105,26 @@
   }
   .play-display.active {
     display: flex;
+  }
+  .play-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $background;
+    div {
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      color: $main;
+      h1 {
+        margin-bottom: 13px;
+        @extend %large-text;
+      }
+      p {
+        @extend %middle-text;
+      }
+    }
+    @extend %form;
   }
   .play-operations {
     margin-top: 10px;

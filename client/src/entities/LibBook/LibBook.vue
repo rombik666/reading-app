@@ -21,12 +21,14 @@
   @import '../../shared/styles/colors.scss';
   @import '../../shared/styles/typo.scss';
   .book {
-    width: 200px;
-    height: 100px;
-    padding: 18px 15px;
+    width: 100%;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     color: $text;
     border-bottom: 1px solid $rest;
-
+    padding: 10px;
     @extend %small-text;
     h4, p {
       display: -webkit-box;
@@ -45,11 +47,12 @@
     &.active {
       background-color: $main;
     }
-    &:first-child {
-      border-radius: 30px 0 0 0;
-    }
     &:last-child {
       border-radius: 0 0 0 30px;
     }
+    &:first-child {
+      border-radius: 30px 0 0 0;
+    }
+    
   }
 </style>

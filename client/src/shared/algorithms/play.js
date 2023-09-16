@@ -1,14 +1,14 @@
 
-import { book, book_array, incBookWordnum, changeBookWordnum } from '../store/book.js';
+import { pointer, pointer_array, incPointerWordnumb, editPointerWordnumb } from '../store/pointer.js';
 
 let process;
 
 export const startFraming = (speed) => {
   process = setInterval(() => {
-    if (book.wordnum <= (book_array.value.length - 2)) {
-      incBookWordnum();
+    if (pointer.wordnumb <= (pointer_array.value.length - 2)) {
+      incPointerWordnumb();
     } else {
-      changeBookWordnum(0);
+      editPointerWordnumb(0);
     }
     console.log('It is playing!!!');
   }, speed);
