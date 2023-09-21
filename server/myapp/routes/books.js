@@ -10,18 +10,23 @@ router.get('/books', async (req, res, next) => {
 });
 
 router.post('/books', async (req, res, next) => {
-    const id = req.cookies.id;
-    const user = await bookModule.findOne({userid: id});
-    console.log(user);
-    if (!user){
-        res.send("Ошибка пользователя");
+    try{
+        const id = req.cookies.id;
+        const user = await bookModule.findOne({userid: id});
+        console.log(user);
+        if (!user){
+            res.send("Ошибка пользователя");
+        }
+        const book = await bookModule.create({
+            title: req.body.title || "",
+            content: req.body.content || "",
+            userid: id
+        });
+        res.json(book);
+    } catch (err){
+        console.log(err);
     }
-    const book = await bookModule.create({
-        title: req.body.title || "",
-        content: req.body.content || "",
-        userid: id
-    });
-    res.json(book);
+    
 });
 
 router.put('/books', async (req, res, next) => {

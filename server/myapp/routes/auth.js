@@ -11,6 +11,7 @@ router.post('/login', async (req, res, next) => {
     const {email, password} = req.body;
     const candidate = await userModel.findOne({email:email, password:password});
     if (candidate) {
+        console.log(`Пользователь ${email}, залогинился`)
         res.cookie('id', candidate._id);
         res.send('Вы успешно залогинились')
     }
@@ -18,6 +19,7 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/logout', async (req, res, next) => {
     res.clearCookie('id');
+    console.log(`Пользователь с id ${req.cookies.id} разлогинился`);
     res.send('Вы успешно разлогинились')
 
 }) 
@@ -33,7 +35,7 @@ router.post('/registration', async (req, res, next) => {
         email: req.body.email,
         password: req.body.password
     })
-    await settingModel.create({
+    await settingModel.create( {
         userid:user._id
     })
     res.json(user);
