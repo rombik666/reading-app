@@ -6,28 +6,26 @@
 }
 %custom-scroll {
   &::placeholder {
-    color: $placeholder;
+    color: #39507AB2;
   }
   &::-webkit-scrollbar {
     width: 5px;
   }
 
   &::-webkit-scrollbar-track {
-    background: $scroll-bcg; 
+    background: #39507A4D; 
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: $main; 
+    background-color: #39507A; 
     border-radius: 10px;  
     border: none; 
   }
 }
 %set-item {
   display: flex;
-  color: $text;
   justify-content: space-between;
   align-items: center;      
-  background: $rest;              
   padding: 23px 20px;           
   border-radius: 30px;
 }
