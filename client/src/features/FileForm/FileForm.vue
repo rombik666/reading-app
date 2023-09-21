@@ -51,13 +51,14 @@
     display: block;
     border-radius: 30px;
     border: 1px dashed $placeholder;
-  }
-  .content {
-    width: 244px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 135px auto 0 auto;
+    justify-content: center;
+
+  }
+  .content {
+    width: 244px;
     text-align: center;
     color: $main;
     .first {

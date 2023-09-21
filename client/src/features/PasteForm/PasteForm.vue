@@ -51,22 +51,7 @@
     resize: none;
     outline: none;
     @extend %title;
-    &::placeholder {
-      color: $placeholder;
-    }
-    &::-webkit-scrollbar {
-      width: 5px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: $scroll-bcg;        /* цвет зоны отслеживания */
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: $main;    /* цвет бегунка */
-      border-radius: 10px;       /* округлось бегунка */
-      border: none;  /* отступ вокруг бегунка */
-    }
+    @extend %custom-scroll;
   }
 
 </style>

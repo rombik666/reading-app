@@ -2,63 +2,83 @@
   import { ref } from 'vue';
   import ActionBtn from '../../entities/ActionBtn/ActionBtn.vue';
 
-  const fontFamily = ref('')
-  const fontSize = ref('');
+  const font_is_active = ref(false);
+  const size_is_active = ref(false);
+
+  const font = ref('Roboto')
+  const size = ref('70');
   const color = ref('#ffffff');
   const theme = ref('default');
 
+  const font_values = [
+    'Noto Sans',
+    'Roboto',
+    'Calibri',
+    'Times'
+  ];
+  const size_values = [
+    '20',
+    '30',
+    '50',
+    '70',
+    '80',
+    '100',
+    '20',
+    '30',
+    '50',
+    '70',
+    '80',
+    '100'
+  ];
+
+  const toggleFont = () => {
+    size_is_active.value = false;
+    font_is_active.value = !font_is_active.value;
+  }
+  const toggleSize = () => {
+    font_is_active.value = false;
+    size_is_active.value = !size_is_active.value;
+  }
+
+  const changeFont = (value) => {
+    font.value = value;
+  }
+  const changeSize = (value) => {
+    size.value = value;
+  }
 
 </script>
  
 <template>
   <div class="set-form">
-    <div class="font">
-      <label for="font-select">Font style</label>
-      <select name="font-family" id="font-select" v-model="fontFamily">
-        <option>Noto Sans</option>
-        <option selected>Roboto</option>
-        <option>Calibri</option>
-        <option>Times</option>
-      </select>
-    </div>
-    <div class="size">
-      <label for="size-select">Text size</label>
-      <select name="font-size" id="size-select" v-model="fontSize">
-        <option>10px</option>
-        <option>12px</option>
-        <option>16px</option>
-        <option>18px</option>
-        <option>25px</option>
-        <option>35px</option>
-        <option>50px</option>
-        <option selected>70px</option>
-      </select>
-    </div>
-    <div class="color">
-      <label for="color-select">Text color</label>
-      <input type="color" name="color" id="color-select">
-    </div>
-    <div class="theme">
-      <label>Theme</label>
-      <div class="items">
-        <div class="pink">
-          <img src="./assets/pink_theme.svg" alt="">
-        </div>
-        <div class="dark">
-          <img src="./assets/dark_theme.svg" alt="">
-        </div>
-        <div class="light">
-          <img src="./assets/black&white_theme.svg" alt="">
-        </div>
-        <div class="default">
-          <img src="./assets/darkblue_theme.svg" alt="">
+    <div class="select" :class="{selected: font_is_active}" @click="toggleFont">
+      <div class="select-content">
+        <h1>Font style</h1>
+        <div class="arrow">
+          <span>{{ font }}</span>
+          <img src="./assets/arrow.svg" alt="">
         </div>
       </div>
+      <ul v-if="font_is_active" class="select-list">
+        <li v-for="value in font_values" :key="value" @click="changeFont(value)">{{ value }}</li>
+      </ul>
     </div>
-    <div class="button-group">
-      <ActionBtn>Save</ActionBtn>
-      <ActionBtn>Reset</ActionBtn>
+    <div class="select" :class="{selected: size_is_active}" @click="toggleSize">
+      <div class="select-content">
+        <h1>Text size</h1>
+        <div class="arrow">
+          <span>{{ size }}</span>
+          <img src="./assets/arrow.svg" alt="">
+        </div>
+      </div>
+      <ul v-if="size_is_active" class="select-list">
+        <li v-for="value in size_values" :key="value" @click="changeSize(value)">{{ value }}</li>
+      </ul>
     </div>
+    <label class="color" for="color-form">
+        <h1>Text color</h1>
+        <input v-model="color" type="color" name="color" id="color-form">
+      </label>
   </div>
 </template>
  
@@ -66,51 +86,71 @@
   @import '../../shared/styles/colors.scss';
   @import '../../shared/styles/typo.scss';
   @import '../../shared/styles/form.scss';
+  @import '../../shared/styles/selects.scss';
 
-  select {
-    color: $text;
-    outline: none;
-  }
   .set-form {
-    background-color: $background;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    align-items: center;
-    padding: 20px 15px 13px 15px;
+    gap: 24px;
+    padding: 20px;
+    background-color: $background;
+    user-select: none;
     @extend %form;
-    & > div:not(.button-group) {
-      width: 100%;
-      height: 50px;
-      background-color: $rest;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-radius: 30px;
-      padding: 0 25px;
-      label {
-        color: $text;
-        @extend %middle-text;
-        line-height: 23px;
+    .label {
+      color: $text;
+      margin-bottom: 20px;
+      @extend %title;
+    }
+  }
+  .arrow {
+    display: flex;
+    gap: 20px;
+    img {
+      transition: all .3s ease;
+    }
+  }
+  .select {
+    position: relative;
+  }
+  .select.selected {
+    .select-content {
+      border-radius: 30px 30px 0 0;
+      background-color: $menu;
+    }
+    .arrow {
+      img {
+        transform: rotate(90deg);
       }
     }
   }
-
-  .items {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-    & > div {
-      width: 30px;
-      height: 30px;
+  .select-content {
+    @extend %set-item;
+    @extend %middle-text;
+  }
+  .select-list {
+    width: 100%;
+    max-height: 300px;
+    position: absolute;
+    overflow-y: scroll;
+    z-index: 10;
+    top: 65px;
+    left: 0;
+    color: $text;
+    @extend %custom-scroll;
+    @extend %small-text;
+    li {
+      background: $rest;
+      padding: 23px 20px;
+      border-top: 1px solid $main-light;
+    }
+    li:last-child {
+      border-radius: 0 0 30px 30px;
     }
   }
-  .button-group {
-    width: 100%;
-    gap: 10px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+  
+  .color  {
+    @extend %set-item;
+    @extend %middle-text;
   }
 
 </style>

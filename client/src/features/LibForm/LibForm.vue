@@ -121,19 +121,7 @@
     height: 100%;
     flex-direction: column;
     overflow-y: scroll;
-    &::-webkit-scrollbar {
-      width: 5px;               /* ширина всей полосы прокрутки */
-    }
-
-    &::-webkit-scrollbar-track {
-      background: $scroll-bcg;        /* цвет зоны отслеживания */
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: $main;    /* цвет бегунка */
-      border-radius: 20px;       /* округлось бегунка */
-      border: none;  /* отступ вокруг бегунка */
-    }
+    @extend %custom-scroll;
     
 
   }
@@ -166,5 +154,11 @@
   .down-group {
     display: flex;
     align-items: center;
+  }
+
+  @media (min-width: 1600px) {
+    .sidebar {
+      flex: 0 0 300px;
+    }
   }
 </style>

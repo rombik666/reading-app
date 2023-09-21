@@ -4,4 +4,44 @@
   height: 430px;
   border-radius: 30px;
 }
+%custom-scroll {
+  &::placeholder {
+    color: $placeholder;
+  }
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
 
+  &::-webkit-scrollbar-track {
+    background: $scroll-bcg; 
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $main; 
+    border-radius: 10px;  
+    border: none; 
+  }
+}
+%set-item {
+  display: flex;
+  color: $text;
+  justify-content: space-between;
+  align-items: center;      
+  background: $rest;              
+  padding: 23px 20px;           
+  border-radius: 30px;
+}
+
+@media (min-width: 1200px) {
+  %form {
+    width: 800px;
+    height: 550px;
+  }
+}
+
+@media (min-width: 1600px) {
+  %form {
+    width: 1000px;
+    height: 600px;
+  }
+}

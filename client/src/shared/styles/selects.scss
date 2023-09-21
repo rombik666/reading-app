@@ -1,0 +1,15 @@
+%set-select {
+  width: 100%;
+  padding: 23px 20px;
+  position: relative;
+  ul {
+    width: 100%;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    li {
+      width: 100%;
+      padding: 23px 20px;
+    }
+  }
+}
