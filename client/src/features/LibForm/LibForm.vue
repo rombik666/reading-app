@@ -11,21 +11,7 @@
 
   import axios from '../../shared/axios/axios.js';
 
-  const books = ref([
-    {
-      title: 'Mark Zucc',
-      content: 'This is a story about Mark Zucc, one of the most famous billionares in the world',
-      _id: 1,
-      wordnumb: 0,
-    },
-    {
-      title: 'This is Elon Musk',
-      content: 'This is a story about Elon Musk, one of the most famous billionares in the world',
-      _id: 2,
-      wordnumb: 0,
-    },
-
-  ]);
+  const books = ref([]);
 
   onMounted(() => {
     axios.get('/api/books')
@@ -53,11 +39,16 @@
   }
   const theTitleChanged = () => {
     changeBookTitle(saving_title.value);
+    
+    axios.put('/api/books', {
+      ...book,
+      title: saving_title.value,
+    })
+    .then(result => console.log(result))
+    .catch(error => console.log(error));
 
     saving_title.value = "";
     save_btn_is_active.value = false;
-
-    // axios.put('/api/books') // здесь нужно реализовать пут запрос на изменение тайтла
 
     books.value.map(tbook => {
       if (tbook._id === book._id) {
@@ -65,6 +56,7 @@
         return tbook;
       }
     })
+    
   }
   const sendBook = () => {
     editPointerItself(book);
