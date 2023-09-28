@@ -1,5 +1,5 @@
 <script setup>
-  import MenuBar from '../widgets/MenuBar/MenuBar.vue'
+  import MenuBar from '../widgets/MenuBar/MenuBar.vue';
   import ReadWidget from '../widgets/ReadWidget/Readwidget.vue'
 </script>
 
