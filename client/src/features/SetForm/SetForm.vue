@@ -1,18 +1,10 @@
 <script setup>
+  import axios from '../../shared/axios/axios';
   import { ref } from 'vue';
   import ActionBtn from '../../entities/ActionBtn/ActionBtn.vue';
-
+  import { settings, setSettings, setToDefault } from '../../shared/store/settings';
   const font_is_active = ref(false);
   const size_is_active = ref(false);
-
-  const font = ref('Roboto')
-  const size = ref('70');
-  const color = ref('#ffffff');
-  const theme = ref('default');
-
-  const changeTheme = (mode) => {
-    theme.value = mode;
-  }
 
   const font_values = [
     'Noto Sans',
@@ -27,12 +19,6 @@
     '70',
     '80',
     '100',
-    '20',
-    '30',
-    '50',
-    '70',
-    '80',
-    '100'
   ];
   const theme_values = [
     'default',
@@ -41,6 +27,7 @@
     'light'
   ]
 
+  
   const toggleFont = () => {
     size_is_active.value = false;
     font_is_active.value = !font_is_active.value;
@@ -51,10 +38,34 @@
   }
 
   const changeFont = (value) => {
-    font.value = value;
+    setSettings({
+      ...settings.value,
+      font: value,
+    })
   }
   const changeSize = (value) => {
-    size.value = value;
+    setSettings({
+      ...settings.value,
+      size: value,
+    })
+  }
+  const changeTheme = (mode) => {
+    setSettings({
+      ...settings.value,
+      theme: mode,
+    })
+  }
+
+  const saveSettings = () => {
+    axios.put('/api/settings', settings.value)
+    .then(response => console.log(response))
+    .catch(error => {
+      console.log(error);
+    })
+  }
+  const resetSettings = () => {
+    setToDefault();
+    axios.put('/api/settings', settings.value);
   }
 
 </script>
@@ -65,7 +76,7 @@
       <div class="select-content">
         <h1>Font style</h1>
         <div class="arrow">
-          <span>{{ font }}</span>
+          <span>{{ settings.font }}</span>
           <img src="./assets/arrow.svg" alt="">
         </div>
       </div>
@@ -77,7 +88,7 @@
       <div class="select-content">
         <h1>Text size</h1>
         <div class="arrow">
-          <span>{{ size }}</span>
+          <span>{{ settings.size }}</span>
           <img src="./assets/arrow.svg" alt="">
         </div>
       </div>
@@ -87,17 +98,17 @@
     </div>
     <label class="color" for="color-form">
       <h1>Text color</h1>
-      <input v-model="color" type="color" name="color" id="color-form">
+      <input v-model="settings.color" type="color" name="color" id="color-form">
     </label>
 
     <div class="theme">
       <ul class="theme-items">
-        <li v-for="value in theme_values" :class="{active: theme == value ? true : false}" @click="changeTheme(value)" :id="value" :key="value"></li>
+        <li v-for="value in theme_values" :class="{active: settings.theme == value ? true : false}" @click="changeTheme(value)" :id="value" :key="value"></li>
       </ul>
     </div>
     <div class="action-group">
-      <ActionBtn>Reset</ActionBtn>
-      <ActionBtn>Save</ActionBtn> 
+      <ActionBtn @click="resetSettings">Reset</ActionBtn>
+      <ActionBtn @click="saveSettings">Save</ActionBtn> 
     </div>
   </div>
 </template>

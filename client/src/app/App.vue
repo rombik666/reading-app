@@ -1,12 +1,24 @@
 <script setup>
+  import axios from '../shared/axios/axios';
   import MenuBar from '../widgets/MenuBar/MenuBar.vue';
   import ReadWidget from '../widgets/ReadWidget/Readwidget.vue'
+  import { settings, setSettings, setToDefault } from '../shared/store/settings';
+  
+  axios.get('/api/settings')
+  .then(settings => setSettings(settings.data))
+  .catch(error => {
+    console.log(error);
+    setToDefault();
+  });
+
 </script>
 
 <template>
-  <MenuBar />
-  <div class="centered">
-    <ReadWidget />
+  <div :class="settings.theme" class="theme">
+    <MenuBar />
+    <div class="centered">
+      <ReadWidget />
+    </div>
   </div>
 </template>
 

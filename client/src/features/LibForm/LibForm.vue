@@ -6,7 +6,7 @@
   import ActionBtn from '../../entities/ActionBtn/ActionBtn.vue';
 
   import { book, changeBookTitle } from '../../shared/store/book.js';
-  import { pointer, editPointerItself } from '../../shared/store/pointer';
+  import { editPointerItself } from '../../shared/store/pointer';
 
 
   import axios from '../../shared/axios/axios.js';
@@ -146,6 +146,12 @@
   .down-group {
     display: flex;
     align-items: center;
+  }
+
+  .list-label {
+    padding: 20px 0 0 20px;
+    color: $main;
+    @extend %middle-text;
   }
 
   @media (min-width: 1600px) {

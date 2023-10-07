@@ -9,7 +9,7 @@
   import { pointer_exists, pointer_array, pointer_ptr } from '../../shared/store/pointer.js';
   import { speed } from '../../shared/store/speed.js';
   import { startFraming, stopFraming } from '../../shared/algorithms/play';
-
+  import { settings } from '../../shared/store/settings';
   const is_playing = ref(false);
 
   const managePlayer = () => {
@@ -38,7 +38,7 @@
         {{ word }}&#32;
       </WordBtn>
     </div>
-    <div :class="{active: is_playing}" class="play-display">
+      <div :class="{active: is_playing}" :style="{color: settings.color, fontFamily: settings.font, fontSize: settings.size + 'px'}" class="play-display">
       <span>{{ pointer_ptr }}</span>
     </div>
     <div class="play-operations">
