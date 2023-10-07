@@ -9,19 +9,31 @@ const settingModel = require('../models/setting');
 
 router.post('/login', async (req, res, next) => {
     const {email, password} = req.body;
-    const candidate = await userModel.findOne({email:email, password:password});
+    const candidate = await userModel.findOne({email:email});
     if (candidate) {
-        console.log(`Пользователь ${email}, залогинился`)
-        res.cookie('id', candidate._id);
-        res.send('Вы успешно залогинились')
+        const isCorrectPassword = await bcrypt.compare(password, candidate.password);
+        if (isCorrectPassword) {
+            console.log(`Пользователь ${email}, залогинился`)
+            res.cookie('id', candidate._id);
+            res.send('Вы успешно залогинились');
+        } else {
+            console.log(`Неверный пароль при почте ${email}`);
+            res.send('Неверная почта или пароль');
+        }
+    } else {
+        console.log(`Неудачная попытка входа через почту: ${email}`);
+        res.send('Неверная почта или пароль');
     }
 })
 
 router.post('/logout', async (req, res, next) => {
-    res.clearCookie('id');
-    console.log(`Пользователь с id ${req.cookies.id} разлогинился`);
-    res.send('Вы успешно разлогинились')
-
+    if (req.cookies.id) {
+        console.log(`Пользователь с id ${req.cookies.id} разлогинился`);
+        res.clearCookie('id');
+        res.send("Вы разлогинились");
+    } else {
+        res.send("Вы не залогинены");
+    }
 }) 
 
 router.post('/registration', async (req, res, next) => {
@@ -30,10 +42,11 @@ router.post('/registration', async (req, res, next) => {
     if (candidate){
         res.send("Пользователь с такой почтой уже зарегистрирован");
     }
-
+    const hashPassword = await bcrypt.hash(req.body.password, 8);
+    
     const user = await userModel.create({
         email: req.body.email,
-        password: req.body.password
+        password: hashPassword
     })
     await settingModel.create( {
         userid:user._id

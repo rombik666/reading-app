@@ -1,12 +1,17 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const settingModel = require('../models/setting');
+const { find } = require('../models/user');
 
-router.get('/api/settings', (req, res, next) => {
-    
+router.get('/settings', async (req, res, next) => {
+    const settings = await settingModel.findOne({userid:req.cookies.id});
+    res.json(settings);
 });
 
-router.put('/api/settings', (req, res, next) => {
-
+router.put('/settings', async (req, res, next) => {
+    const update = req.body;
+    const settings = await settingModel.findOneAndUpdate({userid: req.cookies.id}, update);
+    res.json(settings);
 });
 
 
