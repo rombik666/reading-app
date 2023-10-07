@@ -32,11 +32,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api', authRouter);
-app.use('/api', booksRouter);
-app.use('/api', settingsRouter);
-app.use('/api', userRouter);
+try {
+  app.use('/api', authRouter);
+  app.use('/api', booksRouter);
+  app.use('/api', settingsRouter);
+  app.use('/api', userRouter);
 
-app.listen(3000, () => {
-    console.log(`Сервер запущени на 3000 порте.`);
-})
+  app.listen(3000, () => {
+      console.log(`Сервер запущени на 3000 порте.`);
+  })
+} catch (err) {
+  console.log(err);
+  res.status(500).send("Ошибка во время работы сервера");
+}
+
