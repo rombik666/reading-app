@@ -1,13 +1,16 @@
 
+<script setup>
+  import { settings } from '../../shared/store/settings';
+</script>
+
 <template>
-  <button class="action-button">
+  <button :class="settings.theme" class="action-button">
     <slot></slot>
   </button>
 </template>
  
 <style lang="scss" scoped>
-  $button-bcg: #39507A;
-  $button-col: white;
+  @import '../../shared/styles/colors.scss';
   .action-button {
     background-color: $button-bcg;
     font-size: 18px;
@@ -16,5 +19,18 @@
     color: $button-col;
     padding: 10px 18px;
     border-radius: 30px;
+    &.dark {
+      background-color: $button-bcg_dark;
+      color: $button-col_dark;
+    }
+    &.pink {
+      background-color: $button-bcg_pink;
+      color: $button-col_pink;
+    }
+    &.light {
+      background-color: $button-bcg_light;
+      color: $button-col_light;
+    }
+    
   }
 </style>

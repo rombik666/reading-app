@@ -71,7 +71,7 @@
 </script>
  
 <template>
-  <div class="set-form">
+  <div :class="settings.theme" class="set-form">
     <div class="select" :class="{selected: font_is_active}" @click="toggleFont">
       <div class="select-content">
         <h1>Font style</h1>
@@ -169,7 +169,6 @@
     top: 65px;
     left: 0;
     color: $text;
-    @extend %custom-scroll;
     @extend %small-text;
     li {
       background: $rest;
@@ -191,6 +190,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    background: transparent;
   }
   .theme-items {
     color: $text;
@@ -228,7 +228,136 @@
   .action-group {
     display: flex;
     gap: 13px;
+  }
+
+
+
+  // dark theme
+  .set-form.dark {
+    background-color: $background_dark;
+    .label {
+      color: $text_dark;
+    }
+    .select.selected {
+      .select-content {
+        background-color: $menu_dark;
+      }
+    }
+    .select-content {
+      color: $text_dark;
+      background: $rest_dark;              
+    }
+    .select-list {
+      color: $text_dark;
+      li {
+        background: $rest_dark;
+        border-top: 1px solid $main-light_dark;
+      }
+      li.active {
+        border: 6px solid gold;
+      }
+    }
+
+    .color  {
+      color: $text_dark;
+      background: $rest_dark;        
+    }
+    .theme-items {
+      color: $text_dark;
+      background: $rest_dark;        
+      li {
+        border: 2px solid $text_dark;
+      }
+      li.active {
+        border: 6px solid gold;
+      }
+    }
 
   }
+
+  // pink theme
+  .set-form.pink {
+    background-color: $background_pink;
+    .label {
+      color: $text_pink;
+    }
+    .select.selected {
+      .select-content {
+        background-color: $menu_pink;
+      }
+    }
+    .select-content {
+      color: $text_pink;
+      background: $rest_pink;              
+    }
+    .select-list {
+      color: $text_pink;
+      li {
+        background: $rest_pink;
+        border-top: 1px solid $main-light_pink;
+      }
+      li.active {
+        border: 6px solid gold;
+      }
+    }
+
+    .color  {
+      color: $text_pink;
+      background: $rest_pink;        
+    }
+    .theme-items {
+      color: $text_pink;
+      background: $rest_pink;        
+      li {
+        border: 2px solid $text_light;
+      }
+      li.active {
+        border: 6px solid gold;
+      }
+    }
+  }
+  
+  // light theme
+  .set-form.light {
+    background-color: $background_light;
+    .label {
+      color: $text_light;
+    }
+    .select.selected {
+      .select-content {
+        background-color: $menu_light;
+      }
+    }
+    .select-content {
+      color: $text_light;
+      background: $rest_light;              
+    }
+    .select-list {
+      color: $text_light;
+      li {
+        background: $rest_light;
+        border-top: 1px solid $main-light_light;
+      }
+      li.active {
+        border: 6px solid gold;
+      }
+    }
+
+    .color  {
+      color: $text_light;
+      background: $rest_light;        
+    }
+    .theme-items {
+      color: $text_light;
+      background: $rest_light;        
+      li {
+        border: 2px solid $text_light;
+      }
+      li.active {
+        border: 6px solid gold;
+      }
+    }
+  }
+  
 
 </style>

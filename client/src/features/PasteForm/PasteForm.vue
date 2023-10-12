@@ -4,6 +4,7 @@
 
   import DownBar from '../../entities/DownBar/DownBar.vue';
   import { editPointerItself } from '../../shared/store/pointer.js';
+  import { settings } from '../../shared/store/settings';
 
   const content = ref("");
 
@@ -23,7 +24,7 @@
 </script>
  
 <template>
- <div class="paste-form">
+ <div :class="settings.theme" class="paste-form">
   <textarea v-model="content" class="text-input" name="text" placeholder="Write or paste the text..."></textarea>
   <DownBar @action="postBook"/>
  </div>
@@ -50,7 +51,46 @@
     resize: none;
     outline: none;
     @extend %title;
-    @extend %custom-scroll;
+    &::placeholder {
+      color: $placeholder;
+    }
   }
+
+
+  // dark theme
+  .paste-form.dark {
+    background-color: $background_dark;
+    .text-input {
+      color: $text_dark;
+      &::placeholder {
+        color: $placeholder_dark;
+      }
+    }
+  }
+  
+
+  // pink theme
+  .paste-form.pink {
+    background-color: $background_pink;
+    .text-input {
+      color: $text_pink;
+      &::placeholder {
+        color: $placeholder_pink;
+      }
+    }
+  }
+  
+
+  // light theme
+  .paste-form.light {
+    background-color: $background_light;
+    .text-input {
+      color: $text_light;
+      &::placeholder {
+        color: $placeholder_light;
+      }
+    }
+  }
+  
 
 </style>

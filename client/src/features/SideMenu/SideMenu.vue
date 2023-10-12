@@ -1,12 +1,14 @@
 <script setup>
+  import { settings } from '../../shared/store/settings';
   import { ref } from 'vue';
   import { RouterLink } from 'vue-router';
+
   const active = ref(2);
 
 </script>
  
 <template>
- <div class="sidemenu">
+ <div :class="settings.theme" class="sidemenu">
     <ul class="list" >
       <li :class="active == 1 ? 'active' : ''" @click="active = 1">
         <RouterLink to="/play">
@@ -42,6 +44,15 @@
   .sidemenu {
     width: 50px;
     background-color: $rest;
+    &.dark {
+      background-color: $rest_dark;
+    }
+    &.pink {
+      background-color: $rest_pink;
+    }
+    &.light {
+      background-color: $rest_light;
+    }
     padding: 15px 12px 15px 13px;
     border-radius: 30px 0 0 30px;
   }

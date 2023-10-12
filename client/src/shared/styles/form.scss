@@ -4,24 +4,6 @@
   height: 430px;
   border-radius: 30px;
 }
-%custom-scroll {
-  &::placeholder {
-    color: #39507AB2;
-  }
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: #39507A4D; 
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #39507A; 
-    border-radius: 10px;  
-    border: none; 
-  }
-}
 %set-item {
   display: flex;
   justify-content: space-between;

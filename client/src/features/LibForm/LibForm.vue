@@ -7,7 +7,7 @@
 
   import { book, changeBookTitle } from '../../shared/store/book.js';
   import { editPointerItself } from '../../shared/store/pointer';
-
+  import { settings } from '../../shared/store/settings'
 
   import axios from '../../shared/axios/axios.js';
 
@@ -61,13 +61,11 @@
   const sendBook = () => {
     editPointerItself(book);
   }
-  
-  
 
 </script>
  
 <template>
-  <div class="lib-form">
+  <div :class="settings.theme" class="lib-form">
     <div class="sidebar">
       <div class="list">
         <div v-if="books.length == 0" class="list-label">Библиотека пуста</div>
@@ -105,6 +103,7 @@
   }
   .sidebar {
     flex: 0 0 220px;
+    overflow-x: hidden;
     height: 100%;
     border-right: 1px solid $rest;
   }
@@ -113,9 +112,6 @@
     height: 100%;
     flex-direction: column;
     overflow-y: scroll;
-    @extend %custom-scroll;
-    
-
   }
   .title-input {
       margin-bottom: 20px;
@@ -159,4 +155,74 @@
       flex: 0 0 300px;
     }
   }
+
+
+
+
+  // dark theme
+  .lib-form.dark {
+    background-color: $background_dark;
+    .sidebar {
+      border-right: 1px solid $rest_dark;
+    }
+    .title-input {
+        color: $text_dark;
+        &::placeholder {
+          color: $placeholder_dark;
+        }
+    }
+    .main-nonchosen {
+      h1 {
+        color: $main_dark;
+      }
+    }
+    .list-label {
+      color: $main_dark;
+    }
+  }
+
+  // pink theme
+  .lib-form.pink {
+    background-color: $background_pink;
+    .sidebar {
+      border-right: 1px solid $rest_pink;
+    }
+    .title-input {
+        color: $text_pink;
+        &::placeholder {
+          color: $placeholder_pink;
+        }
+    }
+    .main-nonchosen {
+      h1 {
+        color: $main_pink;
+      }
+    }
+    .list-label {
+      color: $main_pink;
+    }
+  }
+
+  // light theme
+  .lib-form.light {
+    background-color: $background_light;
+    .sidebar {
+      border-right: 1px solid $rest_light;
+    }
+    .title-input {
+        color: $text_light;
+        &::placeholder {
+          color: $placeholder_light;
+        }
+    }
+    .main-nonchosen {
+      h1 {
+        color: $main_lig;
+      }
+    }
+    .list-label {
+      color: $main_lig;
+    }
+  }
+  
 </style>

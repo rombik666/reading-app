@@ -22,7 +22,9 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
+  @import '../shared/styles/colors.scss';
+
     /* Reset and base styles  */
   * {
     padding: 0px;
@@ -114,12 +116,84 @@
   }
 
   body {
-    background-color: #1C2D4F;
+    
     font-family: 'Roboto', sans-serif;
   }
 
   /* custom fonts below */
 
+  .theme {
+    background-color: $background;
+    & * {
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: $scroll-bcg; 
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $main; 
+        border-radius: 10px;  
+        border: none; 
+      }
+    }
+    &.dark * {
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: $scroll-bcg_dark; 
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $main_dark; 
+        border-radius: 10px;  
+        border: none; 
+      }
+    }
+    &.pink * {
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: $scroll-bcg_pink; 
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $main_pink; 
+        border-radius: 10px;  
+        border: none; 
+      }
+    }
+    &.light * {
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: $scroll-bcg_light; 
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $main_light; 
+        border-radius: 10px;  
+        border: none; 
+      }
+    }
+    &.dark {
+      background-color: $background_dark;
+    }
+    &.pink {
+      background-color: $background_pink;
+    }
+    &.light {
+      background-color: $background_light;
+    }
+  }
   .centered {
     width: 100%;
     height: calc(100vh - 80px);
@@ -128,5 +202,7 @@
     align-items: center;
     justify-content: center;
   }
+
+
   
 </style>

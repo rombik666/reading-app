@@ -1,16 +1,21 @@
 <script setup>
   import { speed } from '../../store/speed';
+  import { settings} from '../../store/settings';
 </script>
 
 <template>  
-  <input class="scroll" v-model="speed" type="range" min="100" max="500" name="speed" id="">
+  <input :class="settings.theme" class="scroll" v-model="speed" type="range" min="100" max="500" name="speed" id="">
 </template>
  
 <style lang="scss" scoped>
   @import '../../styles/colors.scss';
   .scroll {
     width: 200px;
+    
     appearance: none;
+    &.pink {
+      opacity: .8;
+    }
     &::-webkit-slider-runnable-track {
       border-radius: 30px;
       height: 8px;

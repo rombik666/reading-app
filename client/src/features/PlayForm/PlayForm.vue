@@ -32,7 +32,7 @@
 </script>
  
 <template>
-  <div v-if="pointer_exists" class="play-form">
+  <div v-if="pointer_exists" :class="settings.theme" class="play-form">
     <div :class="{active: !is_playing}" class="play-text">
       <WordBtn v-for="(word, i) in pointer_array" :key="i" :index="i">
         {{ word }}&#32;
@@ -50,7 +50,7 @@
       </div>
     </div>
   </div>
-  <div v-else class="play-empty">
+  <div v-else :class="settings.theme" class="play-empty">
     <div>
       <h1>Плеер пуст</h1>
       <p>Загрузите текст или выберите из библиотеки</p>
@@ -69,12 +69,12 @@
     flex-direction: column;
     @extend %form;
   }
+  
   .play-text {
     display: none;
     overflow-y: scroll;
     height: 100%;
     color: $text;
-    @extend %custom-scroll;
     @extend %middle-text;
   }
   .play-text.active {
@@ -111,6 +111,7 @@
     }
     @extend %form;
   }
+
   .play-operations {
     margin-top: 10px;
     display: flex;
@@ -124,5 +125,71 @@
     display: flex;
     gap: 20px;
   }
+
+
+
+  // dark theme
+  .play-form.dark {
+    background-color: $background_dark;
+    .play-text {
+      color: $text_dark;
+    }
+    .play-text.active {
+    }
+    .play-display {
+      color: $text_dark;
+    }
+  }
+  
+  .play-empty.dark {
+    background-color: $background_dark;
+    div {
+      color: $main_dark;
+    }
+  }
+
+  // pink theme
+  .play-form.pink {
+    background-color: $background_pink;
+    .play-text {
+      color: $text_pink;
+    }
+    .play-text.active {
+    }
+    .play-display {
+      color: $text_pink;
+    }
+  }
+  
+  .play-empty.pink {
+    background-color: $background_pink;
+    div {
+      color: $main_pink;
+    }
+  }
+
+  // light theme
+  .play-form.light {
+    background-color: $background_light;
+    .play-text {
+      color: $text_light;
+    }
+    .play-text.active {
+    }
+    .play-display {
+      color: $text_light;
+    }
+    .scroll-group {
+      color: $text_light;
+    }
+  }
+  
+  .play-empty.light {
+    background-color: $background_light;
+    div {
+      color: $main_lig;
+    }
+  }
+
   
 </style>
